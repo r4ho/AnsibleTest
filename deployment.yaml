@@ -1,0 +1,13 @@
+---
+- hosts: Servers
+  become: yes
+  become_user: root
+  vars:
+     http_port: 80
+  tasks:
+    - name: install apache
+      yum: name=httpd state=latest
+    - name: Get HTML
+      template: src=index.html dest=/var/www/html/index.html
+    - name: ensure apache running
+      service: name=httpd state=started enabled=yes

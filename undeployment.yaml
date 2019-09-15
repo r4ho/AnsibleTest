@@ -1,0 +1,10 @@
+---
+- hosts: Servers
+  become: yes
+  become_user: root
+  tasks:
+  - name: Stop Apache
+    yum: name=httpd state=absent
+  - name: Delete HTML File
+    file: path=/var/www/html/index.html state=absent
+
